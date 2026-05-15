@@ -1,4 +1,5 @@
 async function loadDrinks() {
+    //Load 10 random drinks for home page
     for (let i =0; i<10; i++){
         const res = await fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php");
         const data = await res.json();
