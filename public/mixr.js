@@ -57,6 +57,27 @@ async function lookUpDrink(){
     }
 
 }
-window.onload = function(){
+window.onload = function () {
     loadDrinks();
-}
+
+    new Typed('#typed-headline', {
+        strings: ["Welcome to Mixr.", "Find your perfect cocktail.", "Discover something new."],
+        typeSpeed: 60,
+        backSpeed: 40,
+        backDelay: 1500,
+        loop: true
+    });
+
+    new Typed('#typed-sub', {
+        strings: [
+            "Search by name or ingredient below.",
+            "Browse our carousel for inspiration.",
+            "Your next favorite drink is one search away."
+        ],
+        typeSpeed: 40,
+        backSpeed: 25,
+        backDelay: 2000,
+        startDelay: 500,
+        loop: true
+    });
+};
