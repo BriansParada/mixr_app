@@ -28,6 +28,9 @@ nav a:hover {
     padding: 40px;
     text-align: center;
 }
+.about_content {
+    padding: 40px;
+}
 .swiper {
     width: 700px;
     height: 400px;

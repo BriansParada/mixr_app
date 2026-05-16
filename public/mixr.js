@@ -33,6 +33,7 @@ async function loadDrinks() {
 
 async function lookUpDrink(){
     //Look up drink based on ingredient or name and change HTML elements
+    try{
         const tolook = document.getElementById("look_input").value;
         console.log(tolook);
         const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${tolook}`);
@@ -50,6 +51,10 @@ async function lookUpDrink(){
         console.log(name);
         result_txt.textContent = name;
         intruct_txt.textContent = data2.drinks[0].strInstructions;
+    }
+    catch (error){
+        console.log("Not found in API database");
+    }
 
 }
 window.onload = function(){
