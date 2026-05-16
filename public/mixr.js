@@ -11,6 +11,9 @@ async function loadDrinks() {
 
         const img = document.createElement("img");
         img.src = data.drinks[0].strDrinkThumb;
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.objectFit = "contain";
         
         slide.appendChild(img);
         container.appendChild(slide);
