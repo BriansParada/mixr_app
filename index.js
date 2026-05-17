@@ -1,6 +1,7 @@
 const express = require('express');
 const supabaseClient = require('@supabase/supabase-js');
 const dotenv = require('dotenv');
+const path = require('path');
 dotenv.config();
 
 const app = express();
@@ -16,7 +17,7 @@ const supabase = supabaseClient.createClient(
   supabaseKey
 );
 app.get('/', (req, res) => {
-    res.sendFile('public/home.html', { root: __dirname });
+    res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 // Get saved cocktails from database
 app.get('/api/cocktails', async (req, res) => {
