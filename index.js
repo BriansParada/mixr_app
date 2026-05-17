@@ -40,11 +40,13 @@ app.post('/api/cocktail', async (req, res) => {
     const drinkName = req.body.drink_name;
     const instructions = req.body.drink_instructions;
     const imageUrl = req.body.img_url;
+    const ingredients = req.body.ingredients;
 
-    const { data, error } = await supabase.from("saved_drinks").insert({
+    const { data, error } = await supabase.from("saved_drinks").upsert({
         drink_name: drinkName,
         drink_instructions: instructions,
-        img_url: imageUrl
+        img_url: imageUrl,
+        ingredients: ingredients
         })
         .select();
 

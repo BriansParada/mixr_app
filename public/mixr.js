@@ -49,24 +49,38 @@ async function lookUpDrink(){
         const result_txt = document.getElementById("results_txt");
         const instruct_txt = document.getElementById("instruct");
         
+        const drink = data2.drinks[0];
+
         console.log(name);
         result_txt.textContent = name;
-        instruct_txt.textContent = data2.drinks[0].strInstructions;
+        instruct_txt.textContent = drink.strInstructions;
         document.getElementById("res_label").style.display="block";
         document.getElementById("save_btn").style.display="block";
         document.getElementById("drink_image").src=drink_url;
+
+        let ingredients = [];
+        for (let i = 1; i <= 15; i++) {
+            const ingredient = drink[`strIngredient${i}`];
+            const measure = drink[`strMeasure${i}`];
+            if (ingredient && ingredient.trim()) {
+                const amount = measure ? measure.trim() + ' ' : '';
+                ingredients.push(amount + ingredient.trim());
+            }
+        }
+        let ingredient_txt = document.getElementById("ingredients");
+        ingredient_txt.textContent = ingredients.join(' · ');
     }
     catch (error){
-        console.log("Not found in API database");
+        alert("Not found in API database");
     }
-
 }
 async function saveCocktail() {
     // Save cocktails from results
     const cocktail = {
         drink_name: document.getElementById("results_txt").textContent,
         drink_instructions: document.getElementById("instruct").textContent,
-        img_url: document.getElementById("drink_image").src
+        img_url: document.getElementById("drink_image").src,
+        ingredients: document.getElementById("ingredients").textContent
     };
 
     const response = await fetch(
@@ -94,9 +108,13 @@ async function loadSavedCocktails() {
 
     data.forEach(cocktail => {
         const card = document.createElement('div');
-        card.innerHTML = `
+        card.innerHTML = 
+        `
             <h2>${cocktail.drink_name}</h2>
             <img src="${cocktail.img_url}" width="200">
+            <h3>Ingredients</h3>
+            <p style="white-space: pre-line">${cocktail.ingredients}</p>
+            <h3>Instructions</h3>
             <p>${cocktail.drink_instructions}</p>
         `;
         container.appendChild(card);

@@ -50,3 +50,6 @@ nav a:hover {
 #res_label, #save_btn{
     display: none;
 }
+.savedDrinks {
+    padding: 40px;
+}
