@@ -1,3 +1,4 @@
+dotenv.config();
 const express = require('express');
 const supabaseClient = require('@supabase/supabase-js');
 const dotenv = require('dotenv');
@@ -6,8 +7,6 @@ const app = express();
 const port = 3000;
 app.use(express.json());
 app.use(express.static('public'));
-
-dotenv.config();
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
