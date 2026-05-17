@@ -51,6 +51,9 @@ async function lookUpDrink(){
         console.log(name);
         result_txt.textContent = name;
         intruct_txt.textContent = data2.drinks[0].strInstructions;
+        document.getElementById("res_label").style.display="block";
+        document.getElementById("save_btn").style.display="block";
+
     }
     catch (error){
         console.log("Not found in API database");
