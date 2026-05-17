@@ -15,7 +15,9 @@ const supabase = supabaseClient.createClient(
   supabaseUrl,
   supabaseKey
 );
-
+app.get('/', (req, res) => {
+    res.sendFile('public/index.html', { root: __dirname });
+});
 // Get saved cocktails from database
 app.get('/api/cocktails', async (req, res) => {
     console.log('Attempting to get all cocktails!');
