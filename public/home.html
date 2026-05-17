@@ -36,10 +36,14 @@
             <button onclick="lookUpDrink()" type="submit">Lookup</button>
             <br>
             <h1 id="res_label">Results</h1>
-            <h3 id="results_txt"></h3>
-            <p id="instruct"></p>
-            <img id="drink_image">
-            <button onclick="saveCocktail()">Save Cocktail</button>
+            <div class="result_container">
+                <img id="drink_image">
+                <div>
+                    <h3 id="results_txt"></h3>
+                    <p id="instruct"></p>
+                    <button id="save_btn" onclick="saveCocktail()" style="display:none">Save Cocktail</button>
+                </div>
+            </div>
         </div>
     </body>
 </html>

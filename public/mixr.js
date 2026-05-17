@@ -41,7 +41,7 @@ async function lookUpDrink(){
 
         const name = data.drinks[0].strDrink;
         const drink_id= data.drinks[0].idDrink;
-        const drink_url = data.drinks[0].strDrinkThumb;
+        const drink_url = data.drinks[0].strDrinkThumb + "/medium";
         
         const res2 = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink_id}`);
         const data2 = await res2.json();
