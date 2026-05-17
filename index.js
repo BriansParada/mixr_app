@@ -16,7 +16,7 @@ const supabase = supabaseClient.createClient(
   supabaseKey
 );
 app.get('/', (req, res) => {
-    res.sendFile('public/index.html', { root: __dirname });
+    res.sendFile('public/home.html', { root: __dirname });
 });
 // Get saved cocktails from database
 app.get('/api/cocktails', async (req, res) => {
