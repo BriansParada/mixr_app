@@ -41,24 +41,66 @@ async function lookUpDrink(){
 
         const name = data.drinks[0].strDrink;
         const drink_id= data.drinks[0].idDrink;
-
+        const drink_url = data.drinks[0].strDrinkThumb;
+        
         const res2 = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink_id}`);
         const data2 = await res2.json();
 
         const result_txt = document.getElementById("results_txt");
-        const intruct_txt = document.getElementById("intruct");
+        const instruct_txt = document.getElementById("instruct");
         
         console.log(name);
         result_txt.textContent = name;
-        intruct_txt.textContent = data2.drinks[0].strInstructions;
+        instruct_txt.textContent = data2.drinks[0].strInstructions;
         document.getElementById("res_label").style.display="block";
         document.getElementById("save_btn").style.display="block";
-
+        document.getElementById("drink_image").src=drink_url;
     }
     catch (error){
         console.log("Not found in API database");
     }
 
+}
+async function saveCocktail() {
+    // Save cocktails from results
+    const cocktail = {
+        drink_name: document.getElementById("results_txt").textContent,
+        drink_instructions: document.getElementById("instruct").textContent,
+        img_url: localStorage.getItem("drink_image")
+    };
+
+    const response = await fetch(
+        '/api/cocktail',
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cocktail)
+        }
+    );
+    const data = await response.json();
+    console.log(data);
+    alert('Cocktail Saved!');
+}
+async function loadSavedCocktails() {
+    // Load saved cocktails
+    const response = await fetch(
+        '/api/cocktails'
+    );
+    const data = await response.json();
+    console.log(data);
+    const container = document.getElementById('savedDrinks');
+
+    data.forEach(cocktail => {
+        const card = document.createElement('div');
+        card.innerHTML = `
+            <h2>${cocktail.drink_name}</h2>
+            <img src="${cocktail.img_url}" width="200">
+            <p>${cocktail.drink_instructions}</p>
+        `;
+        container.appendChild(card);
+    });
 }
 window.onload = function () {
     loadDrinks();
