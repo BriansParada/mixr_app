@@ -1,7 +1,7 @@
-dotenv.config();
 const express = require('express');
 const supabaseClient = require('@supabase/supabase-js');
 const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 const port = 3000;
