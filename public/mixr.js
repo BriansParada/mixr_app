@@ -66,7 +66,7 @@ async function saveCocktail() {
     const cocktail = {
         drink_name: document.getElementById("results_txt").textContent,
         drink_instructions: document.getElementById("instruct").textContent,
-        img_url: localStorage.getItem("drink_image")
+        img_url: document.getElementById("drink_image").src
     };
 
     const response = await fetch(

@@ -4,6 +4,9 @@ const dotenv = require('dotenv');
 
 const app = express();
 const port = 3000;
+app.use(express.json());
+app.use(express.static('public'));
+
 dotenv.config();
 
 const supabaseUrl = process.env.SUPABASE_URL;
@@ -15,7 +18,7 @@ const supabase = supabaseClient.createClient(
 );
 
 // Get saved cocktails from database
-app.get('/cocktails', async (req, res) => {
+app.get('/api/cocktails', async (req, res) => {
     console.log('Attempting to get all cocktails!');
     const { data, error } = await supabase.from('saved_drinks').select();
     if (error) {
@@ -29,7 +32,7 @@ app.get('/cocktails', async (req, res) => {
     }
 });
 // Save cocktails
-app.post('/cocktail', async (req, res) => {
+app.post('/api/cocktail', async (req, res) => {
     console.log('Adding Cocktail');
 
     console.log(`Request: ${JSON.stringify(req.body)}`);
@@ -40,8 +43,8 @@ app.post('/cocktail', async (req, res) => {
 
     const { data, error } = await supabase.from("saved_drinks").insert({
         drink_name: drinkName,
-        instructions: instructions,
-        image_url: imageUrl
+        drink_instructions: instructions,
+        img_url: imageUrl
         })
         .select();
 
