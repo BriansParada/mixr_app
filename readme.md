@@ -10,6 +10,9 @@ Chrome, Firefox, Safari, and Edge on desktop
 
 ---
 
+## Live Demo
+mixr-app-vrzc.vercel.app
+
 ## Developer Manual
 
 ### Install
