@@ -17,9 +17,7 @@ const supabase = supabaseClient.createClient(
 // Get saved cocktails from database
 app.get('/cocktails', async (req, res) => {
     console.log('Attempting to get all cocktails!');
-    const { data, error } = await supabase
-        .from('cocktails')
-        .select();
+    const { data, error } = await supabase.from('saved_drinks').select();
     if (error) {
         console.log(`Error: ${error}`);
 
@@ -40,9 +38,7 @@ app.post('/cocktail', async (req, res) => {
     const instructions = req.body.drink_instructions;
     const imageUrl = req.body.img_url;
 
-    const { data, error } = await supabase
-        .from('cocktails')
-        .insert({
+    const { data, error } = await supabase.from("saved_drinks").insert({
         drink_name: drinkName,
         instructions: instructions,
         image_url: imageUrl
